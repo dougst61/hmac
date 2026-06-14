@@ -1,14 +1,19 @@
 # featuretoken
 
-Interactive command-line tool for creating and decoding HMAC-signed feature
-licensing tokens.
+`featuretoken` is a command-line tool for issuing and verifying software feature
+licenses. It lets you control which features are available to which users, and for
+how long, without shipping separate builds or maintaining a license server.
 
-## Overview
+You define up to 32 named features. When you want to grant a user access to some
+subset of those features until a given date, you run the tool, answer a few
+prompts, and it produces a short token string. The user gives that string to your
+application, which calls the `featuretoken` package to verify it and check which
+features are enabled.
 
-Each token encodes a 32-bit feature bitfield and a UTC expiry timestamp, signed
-with HMAC-SHA256. Tokens are bound to a specific user ID at creation time — the
-same user ID must be provided to decode the token. The payload is not encrypted
-but is tamper-proof; any modification invalidates the signature.
+Tokens are cryptographically signed with HMAC-SHA256 and bound to a specific user
+ID, so they cannot be forged, transferred between users, or modified to enable
+additional features or extend the expiry date. No network connection or central
+server is required — verification is entirely local using a shared secret key.
 
 See [`doc/featuretoken.md`](doc/featuretoken.md) for full package documentation
 including the token binary layout and security properties.

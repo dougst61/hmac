@@ -1,6 +1,4 @@
-// Copyright (c) 2026 Doug. All rights reserved.
-// Use of this source code is governed by an MIT license
-// that can be found in the LICENSE file.
+// Copyright (c) 2026 Doug Stewart
 
 // Feature Token Tool is an interactive command-line application for creating
 // and decoding HMAC-signed feature licensing tokens.
@@ -33,7 +31,7 @@ import (
 	"strings"
 	"time"
 
-	"hmac.go/featuretoken"
+	"featuretoken/featuretoken"
 )
 
 // timeFormat is the Go reference time layout used for parsing and displaying

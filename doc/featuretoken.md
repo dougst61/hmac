@@ -701,8 +701,5 @@ reference of possible errors and their causes:
 
 ---
 
-## License
-
-Copyright (c) 2026 Doug. All rights reserved.
-
-Licensed under the MIT License. See the LICENSE file for details.
+---
+Copyright (c) 2026 Doug Stewart

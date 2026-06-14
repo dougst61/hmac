@@ -1,2 +1,6 @@
 build/
 hmac
+*.env
+*.key
+*.pem
+*_secret*

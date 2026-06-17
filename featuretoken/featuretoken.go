@@ -171,7 +171,7 @@ func New(secretKey []byte, featureNames map[int]string) (*TokenManager, error) {
 //
 // Returns:
 //   - string: The base64-encoded token string, suitable for storage or transmission.
-//   - error:  Non-nil only if cryptographic random number generation fails.
+//   - error:  Always nil; retained for interface compatibility.
 //
 // Example:
 //
@@ -194,9 +194,8 @@ func (tm *TokenManager) CreateToken(userID string, features uint32, expiry time.
 
 	// Fill the nonce portion with cryptographically secure random bytes.
 	// This ensures every token is unique even with identical inputs.
-	if _, err := rand.Read(payload[12:20]); err != nil {
-		return "", fmt.Errorf("failed to generate nonce: %w", err)
-	}
+	// rand.Read never returns an error (Go 1.20+); it crashes on failure.
+	rand.Read(payload[12:20])
 
 	// Compute HMAC-SHA256 over the user ID followed by the payload.
 	// Writing the user ID first binds the token to this specific user;
